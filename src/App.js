@@ -12,6 +12,7 @@ function App() {
     const data = await res.json();
     setJobs(data);
     setloading(false);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -26,7 +27,30 @@ function App() {
     );
   }
 
-  return <h2>tabs project setup</h2>;
+  const { company, dates, duties, title } = jobs[value];
+  return (
+    <section className="section">
+      <div className="title">
+        <h2> experince </h2>
+        <div className="underline"> </div>
+      </div>
+      <div className="jobs-center">
+        <artcle className="job-info">
+          <h3> {title} </h3>
+          <h4> {company} </h4>
+          <p className="job-date"> {dates} </p>
+          {duties.map((item, index) => {
+            return (
+              <div key={index} className="job-desc">
+                <FaAngleDoubleRight className="job-icon"></FaAngleDoubleRight>
+                <p> {item} </p>
+              </div>
+            );
+          })}
+        </artcle>
+      </div>
+    </section>
+  );
 }
 
 export default App;
